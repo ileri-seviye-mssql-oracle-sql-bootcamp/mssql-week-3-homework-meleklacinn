@@ -1,0 +1,1 @@
+Select S.kullaniciKod,COUNT(S.kullaniciKod) AS Kullanici FROM tblKullanici K INNER JOIN tblSiparis S ON K.kullaniciKod=S.kullaniciKod Where K.isim LIKE 'A%' AND K.soyad LIKE '%AK%' GROUP BY S.kullaniciKod ORDER BY Kullanici DESC ;

@@ -1,0 +1,1 @@
+select meslek From tblMeslek M INNER JOIN dbo.tblKullanici K ON M.meslekKod=K.meslekKod where K.kullaniciKod NOT IN (select kullanicikod from tblsiparis);

@@ -1,0 +1,1 @@
+Select isim,soyad,urunAd from dbo.tblSiparis S  INNER JOIN dbo.tblKullanici K ON S.kullaniciKod=K.kullaniciKod INNER JOIN  dbo.tblSiparisDetay S1 ON S.faturaKod=S1.faturakod INNER JOIN dbo.tblUrun U ON U.urunKod=S1.urunKod  where S1.toplam=(SELECT MAX(toplam) FROM tblSiparisDetay);

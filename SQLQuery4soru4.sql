@@ -1,0 +1,1 @@
+Select adet,urunAd from dbo.tblSiparisDetay S  INNER JOIN dbo.tblSiparis S1 ON S.faturaKod=S1.faturaKod INNER JOIN dbo.tblUrun U ON U.urunKod=S.urunKod  where  S1.siparisTarih BETWEEN '01.02.2007' AND '05.03.2014';

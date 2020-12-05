@@ -1,0 +1,1 @@
+Select COUNT(U.meslekKod) From tblKullanici U INNER JOIN tblMeslek M ON U.meslekKod=M.meslekKod JOIN tblSiparis S ON S.kullaniciKod=U.kullaniciKod;

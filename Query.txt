@@ -1,0 +1,42 @@
+1-Ürünlerin ürün adı, ürün kodunu ve KDV dahil satış fiyatını listeleyiniz.
+
+
+Select U.urunKod,urunAd,toplam from dbo.tblUrun U INNER JOIN dbo.tblSiparisDetay S ON U.urunKod=S.urunKod;
+
+2-En yüksek toplam fiyata sahip faturaya dahil ürünleri ve faturayı sipariş veren müşterinin adını soyadını listeleyen SQL kodunu yazınız.
+
+Select isim,soyad,urunAd from dbo.tblSiparis S  INNER JOIN dbo.tblKullanici K ON S.kullaniciKod=K.kullaniciKod INNER JOIN  dbo.tblSiparisDetay S1 ON S.faturaKod=S1.faturakod INNER JOIN dbo.tblUrun U ON U.urunKod=S1.urunKod  where S1.toplam=(SELECT MAX(toplam) FROM tblSiparisDetay);
+
+3-Hiç sipariş vermeyen müşterilerin mesleklerini listeleyiniz.
+select meslek From tblMeslek M INNER JOIN dbo.tblKullanici K ON M.meslekKod=K.meslekKod where K.kullaniciKod NOT IN (select kullanicikod from tblsiparis);
+
+4-01.02.2007 - 05.03.2014 tarihleri arasında hangi üründen kaç adet sipariş edildiğini bulan SQL kodunu yazınız.
+
+Select adet,urunAd from dbo.tblSiparisDetay S  INNER JOIN dbo.tblSiparis S1 ON S.faturaKod=S1.faturaKod INNER JOIN dbo.tblUrun U ON U.urunKod=S.urunKod  where  S1.siparisTarih BETWEEN '01.02.2007' AND '05.03.2014';
+
+5-İptal edilen siparişlerde bulunan ürünleri listeyiniz.
+
+Select urunAd From tblUrun U INNER JOIN tblSiparisDetay S ON U.urunKod=S.urunKod INNER JOIN tblSiparis S1 ON S.faturakod=S1.faturaKod INNER JOIN tblSiparisDurum SD ON SD.siparisDurumKod=S1.siparisDurumKod where SD.aciklama='iptal Edildi';
+
+
+6-En fazla sipariş veren meslek grubunu bulunuz.
+Select COUNT(U.meslekKod) From tblKullanici U INNER JOIN tblMeslek M ON U.meslekKod=M.meslekKod JOIN tblSiparis S ON S.kullaniciKod=U.kullaniciKod;
+
+7-x numaralı ürünü en fazla sipariş veren şehri bulunuz.
+
+Select K.sehir,COUNT(K.sehir)  From tblKullanici K INNER JOIN tblGorus G ON G.kullaniciKod=K.kullaniciKod JOIN tblUrun U ON U.urunKod=G.urunKod INNER JOIN tblSiparisDetay SD ON U.urunKod=SD.urunKod  where SD.urunKod=3499 GROUP BY K.sehir ORDER BY K.sehir DESC;
+
+8-Adı A ile başlayıp soyadında ak geçen müşterilerden en fazla sipariş vereni bulunuz.
+Select S.kullaniciKod,COUNT(S.kullaniciKod) AS Kullanici FROM tblKullanici K INNER JOIN tblSiparis S ON K.kullaniciKod=S.kullaniciKod Where K.isim LIKE 'A%' AND K.soyad LIKE '%AK%' GROUP BY S.kullaniciKod ORDER BY Kullanici DESC ;
+
+
+
+
+
+
+
+
+
+
+
+

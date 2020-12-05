@@ -1,0 +1,1 @@
+Select U.urunKod,urunAd,toplam from dbo.tblUrun U INNER JOIN dbo.tblSiparisDetay S ON U.urunKod=S.urunKod;

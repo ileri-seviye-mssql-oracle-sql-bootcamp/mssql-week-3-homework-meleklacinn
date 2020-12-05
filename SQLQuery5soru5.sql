@@ -1,0 +1,1 @@
+Select urunAd From tblUrun U INNER JOIN tblSiparisDetay S ON U.urunKod=S.urunKod INNER JOIN tblSiparis S1 ON S.faturakod=S1.faturaKod INNER JOIN tblSiparisDurum SD ON SD.siparisDurumKod=S1.siparisDurumKod where SD.aciklama='iptal Edildi';
